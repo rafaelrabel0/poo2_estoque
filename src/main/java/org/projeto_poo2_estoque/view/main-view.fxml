@@ -160,8 +160,8 @@
                <columns>
                   <TableColumn fx:id="colId" prefWidth="60.333335876464844" text="ID" />
                   <TableColumn fx:id="colNome" prefWidth="244.0" text="NOME" />
-                  <TableColumn fx:id="colQtd" minWidth="0.0" prefWidth="122.0" text="QUANTIDADE" />
-                  <TableColumn fx:id="colPreco" prefWidth="122.0" text="PREÇO" />
+                  <TableColumn fx:id="colPreco" minWidth="0.0" prefWidth="122.0" text="PREÇO" />
+                  <TableColumn fx:id="colQtd" prefWidth="122.0" text="QUANTIDADE" />
                </columns>
             </TableView>
          </children>

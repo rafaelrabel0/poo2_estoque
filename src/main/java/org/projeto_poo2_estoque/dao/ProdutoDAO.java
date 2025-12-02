@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class ProdutoDAO {
-    private static final String ARQUIVO_CSV = "produtos";
+    private static final String ARQUIVO_CSV = "produtos.csv";
 
     public ProdutoDAO() {
         try {
@@ -20,14 +20,15 @@ public class ProdutoDAO {
         }
     }
 
-    private String formatarProdutoParaCSV(Produto p) {
+    // Método auxiliar para formatar a linha do CSV (evita repetição e erros)
+    private String formatarLinha(Produto p) {
         return String.format(Locale.US, "%d,%s,%.2f,%d",
                 p.getId(), p.getNome(), p.getPreco(), p.getQuantidade());
     }
 
     public void salvarProduto(Produto produto) throws IOException {
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(ARQUIVO_CSV), StandardOpenOption.APPEND)) {
-            writer.write(formatarProdutoParaCSV(produto));
+            writer.write(formatarLinha(produto));
             writer.newLine();
         }
     }
@@ -41,15 +42,16 @@ public class ProdutoDAO {
         for (String linha : linhas) {
             if (linha.trim().isEmpty()) continue;
             String[] partes = linha.split(",");
-            if (partes.length == 4) {
+            if (partes.length >= 4) { // Verifica se tem pelo menos 4 colunas
                 try {
                     int id = Integer.parseInt(partes[0]);
                     String nome = partes[1];
                     double preco = Double.parseDouble(partes[2].replace(",", "."));
                     int quantidade = Integer.parseInt(partes[3]);
-                    produtos.add(new Produto(id, nome, quantidade, preco));
+
+                    produtos.add(new Produto(id, nome, preco, quantidade));
                 } catch (NumberFormatException e) {
-                    System.err.println("Erro ao ler linha: " + linha);
+                    System.err.println("Erro ao ler linha do CSV: " + linha);
                 }
             }
         }
@@ -61,7 +63,7 @@ public class ProdutoDAO {
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(ARQUIVO_CSV), StandardOpenOption.TRUNCATE_EXISTING)) {
             for (Produto p : produtos) {
                 Produto paraSalvar = (p.getId() == produtoEditado.getId()) ? produtoEditado : p;
-                writer.write(formatarProdutoParaCSV(paraSalvar));
+                writer.write(formatarLinha(paraSalvar));
                 writer.newLine();
             }
         }
@@ -72,7 +74,7 @@ public class ProdutoDAO {
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(ARQUIVO_CSV), StandardOpenOption.TRUNCATE_EXISTING)) {
             for (Produto p : produtos) {
                 if (p.getId() != id) {
-                    writer.write(formatarProdutoParaCSV(p));
+                    writer.write(formatarLinha(p));
                     writer.newLine();
                 }
             }

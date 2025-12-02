@@ -21,12 +21,18 @@ public class MainController {
     @FXML private TableColumn<Produto, Integer> colQtd;
     @FXML private TableColumn<Produto, Double> colPreco;
 
-    private ProdutoDAO dao = new ProdutoDAO();
-    private ObservableList<Produto> listaProdutos = FXCollections.observableArrayList();
+    private final ProdutoDAO dao = new ProdutoDAO();
+    private final ObservableList<Produto> listaProdutos = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+        if (colId != null) colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        if (colNome != null) colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        if (colPreco != null) colPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+        if (colQtd != null) colQtd.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+
         atualizarTabela();
+
         if (tableView != null) {
             tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
                 if (newSelection != null) {
@@ -41,15 +47,17 @@ public class MainController {
         try {
             String nome = txtNome.getText();
             int qtd = Integer.parseInt(txtQuantidade.getText());
+            // Trata preço com vírgula ou ponto
             double preco = Double.parseDouble(txtPreco.getText().replace(",", "."));
             int novoId = dao.carregarProximoId();
-            Produto p = new Produto(novoId, nome, qtd, preco);
+            Produto p = new Produto(novoId, nome, preco, qtd);
             dao.salvarProduto(p);
 
             limparCampos();
             atualizarTabela();
         } catch (Exception e) {
             mostrarErro("Erro ao salvar: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -60,7 +68,8 @@ public class MainController {
             String nome = txtNome.getText();
             int qtd = Integer.parseInt(txtQuantidade.getText());
             double preco = Double.parseDouble(txtPreco.getText().replace(",", "."));
-            Produto p = new Produto(id, nome, qtd, preco);
+
+            Produto p = new Produto(id, nome, preco, qtd);
             dao.atualizarProduto(p);
 
             limparCampos();
@@ -76,7 +85,6 @@ public class MainController {
             if (!txtID.getText().isEmpty()) {
                 int id = Integer.parseInt(txtID.getText());
                 dao.excluirProduto(id);
-
                 limparCampos();
                 atualizarTabela();
             }
@@ -91,12 +99,6 @@ public class MainController {
             listaProdutos.addAll(dao.listarProdutos());
             if (tableView != null) {
                 tableView.setItems(listaProdutos);
-                if (tableView.getColumns().size() >= 4) {
-                    colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-                    colQtd.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-                    colPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
-                }
             }
         } catch (IOException e) {
             mostrarErro("Erro ao ler arquivo: " + e.getMessage());
@@ -114,7 +116,7 @@ public class MainController {
         txtID.setText(String.valueOf(p.getId()));
         txtNome.setText(p.getNome());
         txtQuantidade.setText(String.valueOf(p.getQuantidade()));
-        txtPreco.setText(String.valueOf(p.getPreco()));
+        txtPreco.setText(String.format("%.2f", p.getPreco()));
     }
 
     private void mostrarErro(String msg) {

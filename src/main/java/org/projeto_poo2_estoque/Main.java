@@ -1,16 +1,11 @@
 package org.projeto_poo2_estoque;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.projeto_poo2_estoque.model.Produto;
 import org.projeto_poo2_estoque.utils.PathFXML;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -26,10 +21,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("un-jpa");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Produto produto = new Produto();
         launch();
     }
 }

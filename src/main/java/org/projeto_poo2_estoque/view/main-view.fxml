@@ -156,12 +156,12 @@
                   </Button>
                </children>
             </HBox>
-            <TableView prefHeight="176.0" prefWidth="611.0" style="-fx-background-color: #1E1F22;">
+            <TableView fx:id="tableView" prefHeight="176.0" prefWidth="611.0" style="-fx-background-color: #1E1F22;">
                <columns>
-                  <TableColumn prefWidth="60.333335876464844" text="ID" />
-                  <TableColumn prefWidth="244.0" text="NOME" />
-                  <TableColumn minWidth="0.0" prefWidth="122.0" text="QUANTIDADE" />
-                  <TableColumn prefWidth="122.0" text="PREÇO" />
+                  <TableColumn fx:id="colId" prefWidth="60.333335876464844" text="ID" />
+                  <TableColumn fx:id="colNome" prefWidth="244.0" text="NOME" />
+                  <TableColumn fx:id="colQtd" minWidth="0.0" prefWidth="122.0" text="QUANTIDADE" />
+                  <TableColumn fx:id="colPreco" prefWidth="122.0" text="PREÇO" />
                </columns>
             </TableView>
          </children>

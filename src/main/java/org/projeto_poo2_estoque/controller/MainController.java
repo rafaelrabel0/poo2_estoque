@@ -15,6 +15,26 @@ public class MainController {
     public TextField txtPreco;
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onAdicionarClick() {
+    System.out.println(txtID.getText());
+    System.out.println(txtNome.getText());
+    System.out.println(txtQuantidade.getText());
+    System.out.println(txtPreco.getText());
+    }
+
+    @FXML
+    protected void onAtualizarClick() {
+        System.out.println(txtID.getText());
+        System.out.println(txtNome.getText());
+        System.out.println(txtQuantidade.getText());
+        System.out.println(txtPreco.getText());
+    }
+
+    @FXML
+    protected void onExcluirClick() {
+        System.out.println(txtID.getText());
+        System.out.println(txtNome.getText());
+        System.out.println(txtQuantidade.getText());
+        System.out.println(txtPreco.getText());
     }
 }

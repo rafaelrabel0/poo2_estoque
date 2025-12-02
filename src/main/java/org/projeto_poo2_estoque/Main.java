@@ -30,11 +30,6 @@ public class Main extends Application {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Produto produto = new Produto();
-        produto.setNome("rafael r. souza");
-        produto.setPreco("10,90");
-        em.persist(produto);
-        em.getTransaction().commit();
-        em.close();
         launch();
     }
 }

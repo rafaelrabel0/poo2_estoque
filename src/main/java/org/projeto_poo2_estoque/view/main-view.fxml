@@ -121,7 +121,7 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="55.0" prefWidth="550.0" style="-fx-background-color: #1E1F22;">
                <children>
-                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Adicionar" textFill="#b7babf">
+                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAdicionarClick" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Adicionar" textFill="#b7babf">
                      <HBox.margin>
                         <Insets left="-80.0" />
                      </HBox.margin>
@@ -132,7 +132,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Atualizar " textFill="#b7babf">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onAtualizarClick" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Atualizar " textFill="#b7babf">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
@@ -143,7 +143,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Excluir" textFill="#b7babf">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onExcluirClick" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Excluir" textFill="#b7babf">
                      <HBox.margin>
                         <Insets left="100.0" />
                      </HBox.margin>

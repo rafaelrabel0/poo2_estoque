@@ -26,7 +26,6 @@ public class MainController {
 
     @FXML
     public void initialize() {
-
         atualizarTabela();
         if (tableView != null) {
             tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -44,13 +43,11 @@ public class MainController {
             int qtd = Integer.parseInt(txtQuantidade.getText());
             double preco = Double.parseDouble(txtPreco.getText().replace(",", "."));
             int novoId = dao.carregarProximoId();
-
-            Produto p = new Produto(novoId, nome, (int) preco, qtd);
+            Produto p = new Produto(novoId, nome, qtd, preco);
             dao.salvarProduto(p);
 
             limparCampos();
             atualizarTabela();
-            System.out.println("Produto salvo: " + p);
         } catch (Exception e) {
             mostrarErro("Erro ao salvar: " + e.getMessage());
         }
@@ -63,13 +60,11 @@ public class MainController {
             String nome = txtNome.getText();
             int qtd = Integer.parseInt(txtQuantidade.getText());
             double preco = Double.parseDouble(txtPreco.getText().replace(",", "."));
-
-            Produto p = new Produto(id, nome, (int) preco, qtd);
+            Produto p = new Produto(id, nome, qtd, preco);
             dao.atualizarProduto(p);
 
             limparCampos();
             atualizarTabela();
-            System.out.println("Produto atualizado: " + p);
         } catch (Exception e) {
             mostrarErro("Erro ao atualizar: " + e.getMessage());
         }
@@ -84,7 +79,6 @@ public class MainController {
 
                 limparCampos();
                 atualizarTabela();
-                System.out.println("Produto excluído ID: " + id);
             }
         } catch (Exception e) {
             mostrarErro("Erro ao excluir: " + e.getMessage());
@@ -97,12 +91,11 @@ public class MainController {
             listaProdutos.addAll(dao.listarProdutos());
             if (tableView != null) {
                 tableView.setItems(listaProdutos);
-                // Configuração dinâmica das colunas caso não estejam bindadas
                 if (tableView.getColumns().size() >= 4) {
-                    ((TableColumn)tableView.getColumns().get(0)).setCellValueFactory(new PropertyValueFactory<>("id"));
-                    ((TableColumn)tableView.getColumns().get(1)).setCellValueFactory(new PropertyValueFactory<>("nome"));
-                    ((TableColumn)tableView.getColumns().get(2)).setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-                    ((TableColumn)tableView.getColumns().get(3)).setCellValueFactory(new PropertyValueFactory<>("preco"));
+                    colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+                    colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                    colQtd.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+                    colPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
                 }
             }
         } catch (IOException e) {

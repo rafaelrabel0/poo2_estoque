@@ -20,7 +20,6 @@ public class ProdutoDAO {
         }
     }
 
-    // Método auxiliar para formatar a linha do CSV (evita repetição e erros)
     private String formatarLinha(Produto p) {
         return String.format(Locale.US, "%d,%s,%.2f,%d",
                 p.getId(), p.getNome(), p.getPreco(), p.getQuantidade());
@@ -42,7 +41,7 @@ public class ProdutoDAO {
         for (String linha : linhas) {
             if (linha.trim().isEmpty()) continue;
             String[] partes = linha.split(",");
-            if (partes.length >= 4) { // Verifica se tem pelo menos 4 colunas
+            if (partes.length >= 4) {
                 try {
                     int id = Integer.parseInt(partes[0]);
                     String nome = partes[1];

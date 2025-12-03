@@ -1,7 +1,15 @@
 package org.projeto_poo2_estoque.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "produtos")
 public class Produto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nome;
     private double preco;
     private int quantidade;
@@ -16,7 +24,13 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    // Getters e Setters manuais
+    public Produto(String nome, double preco, int quantidade) {
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidade = quantidade;
+    }
+
+    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -31,6 +45,6 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{id=" + id + ", nome='" + nome + "', preco=" + preco + ", quantidade=" + quantidade + '}';
+        return nome;
     }
 }

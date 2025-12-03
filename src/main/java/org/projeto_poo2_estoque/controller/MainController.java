@@ -8,8 +8,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.projeto_poo2_estoque.dao.ProdutoDAO;
 import org.projeto_poo2_estoque.model.Produto;
 
-import java.io.IOException;
-
 public class MainController {
     @FXML private TextField txtID;
     @FXML private TextField txtNome;
@@ -47,10 +45,8 @@ public class MainController {
         try {
             String nome = txtNome.getText();
             int qtd = Integer.parseInt(txtQuantidade.getText());
-            // Trata preço com vírgula ou ponto
             double preco = Double.parseDouble(txtPreco.getText().replace(",", "."));
-            int novoId = dao.carregarProximoId();
-            Produto p = new Produto(novoId, nome, preco, qtd);
+            Produto p = new Produto(nome, preco, qtd);
             dao.salvarProduto(p);
 
             limparCampos();
@@ -100,8 +96,9 @@ public class MainController {
             if (tableView != null) {
                 tableView.setItems(listaProdutos);
             }
-        } catch (IOException e) {
-            mostrarErro("Erro ao ler arquivo: " + e.getMessage());
+        } catch (Exception e) {
+            mostrarErro("Erro ao acessar banco: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

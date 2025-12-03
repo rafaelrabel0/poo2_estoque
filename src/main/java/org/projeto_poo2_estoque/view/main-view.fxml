@@ -22,12 +22,12 @@
          <children>
             <HBox prefHeight="27.0" prefWidth="697.0">
                <children>
-                  <Label alignment="TOP_CENTER" text="Cadastro de Produtos" textAlignment="CENTER" textFill="WHITE">
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Cadastro de Produtos" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="JetBrains Mono SemiBold" size="14.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="180.0" right="150.0" top="5.0" />
+                        <Insets left="191.0" top="5.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -123,7 +123,7 @@
                <children>
                   <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAdicionarClick" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Adicionar" textFill="#b7babf">
                      <HBox.margin>
-                        <Insets left="-80.0" />
+                        <Insets />
                      </HBox.margin>
                      <font>
                         <Font name="JetBrains Mono Light" size="10.0" />
@@ -132,9 +132,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onAtualizarClick" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Atualizar " textFill="#b7babf">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onAtualizarClick" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Atualizar " textFill="#b7babf">
                      <HBox.margin>
-                        <Insets left="50.0" />
+                        <Insets left="50.0" right="50.0" />
                      </HBox.margin>
                      <font>
                         <Font name="JetBrains Mono Light" size="10.0" />
@@ -143,9 +143,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onExcluirClick" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Excluir" textFill="#b7babf">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onExcluirClick" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #2B2D30; -fx-border-color: #43454A;" text="Excluir" textFill="#b7babf">
                      <HBox.margin>
-                        <Insets left="100.0" />
+                        <Insets />
                      </HBox.margin>
                      <font>
                         <Font name="JetBrains Mono Light" size="10.0" />

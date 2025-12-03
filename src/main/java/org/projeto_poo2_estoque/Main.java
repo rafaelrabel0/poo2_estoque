@@ -15,7 +15,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(new FileInputStream(PathFXML.pathBase() + "\\main-view.fxml"));
         Scene scene = new Scene(root, 550, 364);
-        stage.setTitle("Cadastro de Produtos");
+        stage.setTitle("Estoque");
         stage.setScene(scene);
         stage.show();
     }
